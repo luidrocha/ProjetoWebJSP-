@@ -10,25 +10,26 @@
 
 	<h1>Sistema em JSP</h1>
 
-	<form action="ServletLoginController" method="post" >
+	<form action="ServletLoginController" method="post">
+		<input type="hidden" value="<%=request.getParameter("url")%>" name="url">
 		<table>
 			<tr>
-				<td><label>Login</label> <input type="text" name="login"></br></br>
-					</td>
+				<td><label>Login</label> <input type="text" name="login"></br>
+				</br></td>
 			<tr>
-				<td> <label>Senha</label> <input type="password" name="senha"></br></br>
-					</td>
+				<td><label>Senha</label> <input type="password" name="senha"></br>
+				</br></td>
 			</tr>
 			</td>
-			
+
 			<tr>
-				<td> <input type="submit" value="Enviar"></td>
+				<td><input type="submit" value="Enviar"></td>
 			</tr>
 
 		</table>
 	</form>
-	
--- Pega o atributo vindo do back-end
+
+	<%-- Pega o atributo vindo do back-end  --%>
 
 	<h4>${msg}</h4>
 

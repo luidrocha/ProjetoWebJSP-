@@ -13,13 +13,14 @@ import model.ModelLogin;
 
 // Controller são as servlets
 
-@WebServlet("/ServletLoginController")
+@WebServlet(urlPatterns = {"/principal/ServletLoginController", "/ServletLoginController"})
 public class servletlogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public servletlogin() {
 
 	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -34,6 +35,7 @@ public class servletlogin extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String url = request.getParameter("url");
 
 		if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 
@@ -47,7 +49,12 @@ public class servletlogin extends HttpServlet {
 		// Registra o usuario na sessão passando o objeto login
 				request.getSession().setAttribute("usuario", modellogin.getLogin());
 				
-				RequestDispatcher redirecionar = request.getRequestDispatcher("principal/principal.jsp");
+				if(url==null || url.equals("null") ) {
+					
+					url="principal/principal.jsp";
+				}
+				
+				RequestDispatcher redirecionar = request.getRequestDispatcher(url);
 				redirecionar.forward(request, response);
 				
 				
